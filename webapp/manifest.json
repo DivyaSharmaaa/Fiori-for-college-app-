@@ -1,0 +1,222 @@
+{
+    "_version": "1.26.0",
+    "sap.app": {
+        "id": "lecturer.workflowuimodule",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.8.4",
+            "toolsId": "dce1a6c6-3c0b-4cf2-929d-16639e77a6e2"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.82.2",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "lecturer.workflowuimodule.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "lecturer.workflowuimodule.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "Routelec",
+                    "pattern": ":?query:",
+                    "target": [
+                        "Targetlec"
+                    ]
+                }
+            ],
+            "targets": {
+                "Targetlec": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "lec",
+                    "viewName": "lec"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "lecturer.workflowuimodule.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "lect"
+    }
+
+    ,
+    "sap.bpa.task": {
+        "_version": "1.0.0",
+        "outcomes": [
+            {
+                "id": "approve",
+                "label": "Approve"
+            },
+            {
+                "id": "reject",
+                "label": "Reject"
+            }
+        ],
+        "inputs": {
+            "$schema": "http://json-schema.org/draft-07/schema",
+                "title": "input",
+                "type": "object",
+                "required": [
+                    
+                ],
+                "properties": {
+                    "taecherName": {
+                        "type": "string",
+                        "title": "Teacher Name",
+                        "description": "Teacher Name"
+                    },
+                    "tid": {
+                        "type": "string",
+                        "title": "Application Number",
+                        "description": "Application Number"
+                    },
+                    "age": {
+                        "type": "number",
+                        "title": "Age",
+                        "description": "Age"
+                    },
+                    "dob": {
+                        "type": "string",
+                        "title": "DOB",
+                        "description": "DOB"
+                    },
+                    "email": {
+                        "type": "string",
+                        "title": "Email",
+                        "description": "Email"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "title": "Phone",
+                        "description": "Phone"
+                    },
+                    "department": {
+                        "type": "string",
+                        "title": "Department",
+                        "description": "Department"
+                    },
+                    "skills": {
+                        "type": "string",
+                        "title": "Skills",
+                        "description": "Skills"             
+                },
+                "Address": {
+                    "type": "string",
+                    "title": "Address",
+                    "description": "Skills"             
+            },
+            "Gender": {
+                "type": "string",
+                "title": "Gender",
+                "description": "Skills"             
+        },
+                "pdfDocument": {
+                        "type": "string",
+                        "title": "PDF Document",
+                        "description": "Link to the PDF document"
+                    }
+            }
+        },
+        "outputs": {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "title": "output",
+            "type": "object",
+            "required": [
+                "comment"
+            ],
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "title": "Comment",
+                    "description": "Comment to buyer"
+                }
+            }
+        },
+        "category": "approval"
+    }
+
+}

@@ -1,0 +1,88 @@
+
+<mvc:View controllerName="lecturer.workflowuimodule.controller.App"
+xmlns:html="http://www.w3.org/1999/xhtml"
+xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+xmlns:l="sap.ui.layout"
+xmlns:f="sap.ui.layout.form"
+xmlns:core="sap.ui.core"
+xmlns:form="sap.ui.layout.form"
+xmlns:smartForm="sap.ui.comp.smartform"
+xmlns:upload="sap.m.upload"
+xmlns:macros="sap.fe.macros"
+xmlns:smartField="sap.ui.comp.smartfield"
+xmlns="sap.m">
+<App id="_IDGenApp" >
+    <Page id = "scroll">
+        <content>
+         <form:SimpleForm id="request-information-form" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="false">
+        <form:content>
+                <core:Title id="vacation-timerange-heading" text="Teacher Approval Form"/>
+                <Label id="teacher-name-label" text="Teacher Name" labelFor="teacher-name-field"/>
+                <Input id="teacher-name-field" value="{context>/taecherName}" editable="false"/>
+                <Label id="tid-label" text="Application Number" labelFor="tid-field"/>
+                <Input id="tid-field" value="{context>/tid}" editable="false"/>
+                <Label id="age-label" text="Order Amount" labelFor="age-field"/>
+                <Input id="age-field" value="{context>/age}" editable="false"/>
+                <Label id="dob-label" text="Date of birth" labelFor="dob-field"/>
+                <Input id="dob-field" value="{context>/dob}" editable="false"/>
+                <Label id="email-label" text="Email" labelFor="email-field"/>
+                <Input id="email-field" value="{context>/email}" editable="false"/>
+                <Label id="phone-label" text="Phone" labelFor="phone-field"/>
+                <Input id="phone-field" value="{context>/phone}" editable="false"/>
+                <Label id="department-label" text="Phone" labelFor="department-field"/>
+                <Input id="department-field" value="{context>/department}" editable="false"/>
+                <Label id="skills-label" text="Phone" labelFor="skills-field"/>
+                <Input id="skills-field" value="{context>/skills}" editable="false"/>
+                <Label id="Gender-label" text="Phone" labelFor="Gender-field"/>
+                <Input id="Gender-field" value="{context>/Gender}" editable="false"/>
+                <Label id="Address-label" text="Phone" labelFor="Address-field"/>
+                <Input id="Address-field" value="{context>/Address}" editable="false"/>
+                <Label id="pdf-document-label" text="Attachments" labelFor="uploadSet"/>
+            <upload:UploadSet
+            id="uploadSet"
+            uploadEnabled="false"
+             items="{path: 'myModel>/Files', templateShareable: false}">
+             <upload:toolbar>
+            </upload:toolbar>
+            <upload:items>
+                <upload:UploadSetItem id="_IDGenUploadSetItem1"
+                    fileName="{myModel>fileName}"
+                    mediaType="{myModel>mediaType}"
+                    url="{myModel>url}"
+                    enabledEdit="false"
+                    enabledRemove="false"
+                    visibleEdit="false"
+                    visibleRemove='false'
+                    openPressed="onOpenPressed">
+                    
+                    <upload:attributes>
+                        <ObjectAttribute id="_IDGenObjectAttribute1"
+                            title="Uploaded By"
+                            text="{myModel>createdBy}"
+                            active="false"/>
+                        <ObjectAttribute id="_IDGenObjectAttribute2"
+                            title="Uploaded on"
+                            text="{myModel>createdAt}"
+                            active="false"/>
+                        <ObjectAttribute id="_IDGenObjectAttribute3"
+                            title="File Size"
+                            text="{myModel>size}"
+                            active="false"/>
+                    </upload:attributes>
+                </upload:UploadSetItem>
+            </upload:items>
+        </upload:UploadSet>
+
+       </form:content>
+        </form:SimpleForm>
+
+        <html:hr></html:hr>
+        <FlexBox id="comment-wrapper" direction="Column" class="sapUiSmallMargin" width="auto">
+            <CheckBox id="Ack" text="I acknowledge that we have received your order and will process it based on the availability" />
+            <Label id="comment-label" text="Comment" />
+            <TextArea id="comment-field" showExceededText="true" maxLength="1000" width="100%" height="120px" value="{context>/comment}"/>
+        </FlexBox>
+        </content>
+    </Page>
+</App>
+</mvc:View>
